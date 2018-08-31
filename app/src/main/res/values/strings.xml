@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name">SSEth</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="howtouse">>>How to use</string>
+    <string name="howtouse1">- Open app by clicking on icon\n
+                            - Click on Google sign in to login\n
+                            - On next page click on Claim Button\n
+                              - that\'s it, repeat the procedure every 5 minutes\n</string>
+    <string name="helpClaim">>>Claim</string>
+    <string name="helpClaim1">- Claim rates are dependent on Ethereum coin rates\n
+                                            and according to market conditions.\n
+- Current claim rate will be displayed on click page.\n
+- Claim amount is decided on various conditions according to market;\n but the timer will be fixed i.e. 5 minutes.\n
+    </string>
+
+
+    <string name="helpWithdrawal">>>Withdrawal </string>
+    <string name="helpWithdrawal1">- Minimum withdraw\n
+You can request withdrawal once your balance reaches 1500000 Gwei.\n
+Note:- minimum withdrawal limit is subject to change any time based\n on various conditions.\n
+- Maximum withdraw\n
+Maximum or upper limit of withdraw in one request is 2500000 Gwei.\n
+Note:- maximum withdrawal limit is subject to change any time based\n on various conditions.\n
+</string>
+    <string name="helpFees">>>Fees </string>
+    <string name="helpFees1">- Fee\'s structures also depends on market conditions.\n
+
+- Current fees rate will be displayed on Withdraw Page.\n
+
+- These fees are considered as network or miners fees to\n complete transactions.\n
+
+- The more the fees more will be transaction confirmation speed.\n
+
+        - For Ethereum Address more fees charged while \n
+        Coinbase wallet less fees are charged.
+
+</string>
+    <string name="helppayoutday">>>Payout Day</string>
+    <string name="helppayoutday1">
+
+- Currently it is set to 7th day. i.e Every Sunday all\n pending payouts will be paid.\n
+
+Note:- Subject to change any time.</string>
+    <string name="lastclaim">Last Claim :-</string>
+    <string name="facebook_app_id">2738822529521952</string>
+    <string name="fb_login_protocol_scheme">fb2738822529521952</string>
+    <string name="current_balance">Current Balance : -</string>
+    <string name="symbolhypen">-</string>
+    <string name="request_withdrawal">Request Withdrawal</string>
+    <string name="info_about_fees">*** Withdrawal fees are dependent on choice of payment method \n For more deatils check Help menu.</string>
+    <string name="amt">Amount</string>
+    <string name="esti_receive">Estimated Receive</string>
+    <string name="eth_add">Ethereum Address</string>
+    <string name="req_msg">*please check ethereum address before requesting</string>
+    <string name="request">Request</string>
+    <string name="coinbase_email">Coinbase Email</string>
+    <string name="ethereum_address">Ethereum Address</string>
+    <string name="install">INSTALL</string>
+
+
+</resources>
+
+
+    <!--
+
+
+    use a blackslash not a forwardslash. "\n"
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <string name="title">Hello\nWorld!</string>
+    </resources>
+
+    Also, if you plan on using the string as HTML, you can use &lt;br /&gt; for a line break(<br />)
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <string name="title">Hello&lt;br /&gt;World!</string>
+    </resources>
+
+
+
+    -->

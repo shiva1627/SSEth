@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "379891173941",
+    "firebase_url": "https://sseth-b26dd.firebaseio.com",
+    "project_id": "sseth-b26dd",
+    "storage_bucket": "sseth-b26dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379891173941:android:ea78aa2920c1bfd0",
+        "android_client_info": {
+          "package_name": "org.sssj.com.sseth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "379891173941-s8k6ps0ev4c00maj855aor8hm82umti8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.sssj.com.sseth",
+            "certificate_hash": "be4ef839dc6247e99399db3ee375b45d5f9a432c"
+          }
+        },
+        {
+          "client_id": "379891173941-2o0e5et5asomprm0b4u7ej7gkedn3eo9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.sssj.com.sseth",
+            "certificate_hash": "148e2024babb812dd5bbaacd7e6ea38cc57a2d57"
+          }
+        },
+        {
+          "client_id": "379891173941-aaq1ubug6gobuphqd5jogqb7jhpnpj6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAraE7kDR7sKrgSMCFqah3JPIdvBlKontc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "379891173941-aaq1ubug6gobuphqd5jogqb7jhpnpj6b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
