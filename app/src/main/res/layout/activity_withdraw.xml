@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background_gradient"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -98,26 +98,42 @@
                         android:textAlignment="center" />
 
 
-                    <TextView
-                        android:id="@+id/txtethaddamt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:text="@string/amt"
-                        android:textSize="10sp"
-                        android:visibility="gone"
-                        tools:ignore="SmallSp" />
+                    <!--  <TextView
+                          android:id="@+id/txtethaddamt"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="10dp"
+                          android:layout_marginStart="10dp"
+                          android:text="@string/amt"
+                          android:textSize="10sp"
+                          android:visibility="gone"
+                          tools:ignore="SmallSp" />
 
-                    <EditText
-                        android:id="@+id/edwithAmt"
+                      <EditText
+                          android:id="@+id/edwithAmt"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="10dp"
+                          android:layout_marginStart="10dp"
+                          android:enabled="false"
+                          android:inputType="number"
+                          android:visibility="gone" />-->
+
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:enabled="false"
-                        android:inputType="number"
-                        android:visibility="gone" />
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/edwithAmt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:enabled="false"
+                            android:hint="@string/amt"
+                            android:inputType="number"
+                            android:visibility="gone" />
+                    </android.support.design.widget.TextInputLayout>
 
 
                     <TextView
@@ -153,15 +169,20 @@
                         android:textSize="10sp"
                         android:visibility="gone"
                         tools:ignore="SmallSp" />
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/edwithethAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:hint="@string/eth_add"
                         android:layout_marginStart="10dp"
                         android:enabled="false"
                         android:visibility="gone" />
+                    </android.support.design.widget.TextInputLayout>
 
                     <TextView
                         android:id="@+id/txtethAdd4"
@@ -175,7 +196,7 @@
                         android:visibility="gone"
                         tools:ignore="SmallSp" />
 
-                    <TextView
+                   <!-- <TextView
                         android:id="@+id/txtethAdd5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -184,7 +205,7 @@
                         android:text="@string/esti_receive"
                         android:textSize="10sp"
                         android:visibility="gone"
-                        tools:ignore="SmallSp" />
+                        tools:ignore="SmallSp" />-->
 
                     <EditText
                         android:id="@+id/edwithEstimatedAmtcoin"
@@ -198,7 +219,7 @@
                         android:visibility="gone" />
 
 
-                    <TextView
+                  <!--  <TextView
                         android:id="@+id/txtethAdd7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -207,16 +228,21 @@
                         android:text="CoinBase Email Id "
                         android:textSize="10sp"
                         android:visibility="gone"
-                        tools:ignore="SmallSp" />
+                        tools:ignore="SmallSp" />-->
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/edwithethAddresscoin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:hint="CoinBase Email Id "
                         android:layout_marginStart="10dp"
                         android:enabled="false"
                         android:visibility="gone" />
+                    </android.support.design.widget.TextInputLayout>
 
                     <TextView
                         android:id="@+id/txtethAdd8"

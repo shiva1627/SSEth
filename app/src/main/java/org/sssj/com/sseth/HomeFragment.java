@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
-import com.facebook.ads.InterstitialAd;
 import com.facebook.ads.NativeAd;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,17 +40,17 @@ import java.util.concurrent.TimeUnit;
 
 public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragment";
-      String Claim_url = "http://sscoinmedia.tech/EthereumWebService/ethereumBalanceUpdate.php";
-      String Claim_timer_url = "http://sscoinmedia.tech/EthereumWebService/ethereumClaimTimer.php";
+    String Claim_url = "http://sscoinmedia.tech/EthereumWebService/ethereumBalanceUpdate1.php";
+    String Claim_timer_url = "http://sscoinmedia.tech/EthereumWebService/ethereumClaimTimer1.php";
 
 
     CountDownTimer countdt;
     TextView txtEmail, txtubal, txtClaimRate, txtlastclaim;
     FirebaseAuth mAuth;
     Button btnclaim;
-  //  private InterstitialAd mInterstitialAd;
+    //  private InterstitialAd mInterstitialAd;
 
-    private InterstitialAd interstitialAd;
+    int flagResume = 0;
     private AdView adView;
 
     RequestQueue requestQueue;
@@ -69,6 +69,10 @@ public class HomeFragment extends Fragment {
     private SharedPreferences.Editor prefseditor;
     int startappCount;
 
+    String deviceId = "not find";
+    TelephonyManager telephonyManager;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -76,6 +80,12 @@ public class HomeFragment extends Fragment {
 
         sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         prefs = getActivity().getSharedPreferences("startappCount", Context.MODE_PRIVATE);
+
+        telephonyManager = (TelephonyManager) getActivity().getSystemService(Context.
+                TELEPHONY_SERVICE);
+        deviceId = telephonyManager.getDeviceId();
+
+
         requestQueue = MySingleton.getInstance(getActivity()).getRequestQueue();
         startAppAd = new StartAppAd(getActivity());
         requestQueue = MySingleton.getInstance(getActivity()).getRequestQueue();
@@ -116,14 +126,6 @@ public class HomeFragment extends Fragment {
         adView.loadAd();
 
 
-
-        // Instantiate an InterstitialAd object
-        interstitialAd = new InterstitialAd(getActivity(), "2170634523153169_2170636423152979");
-
-        // load the ad
-        interstitialAd.loadAd();
-
-
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -132,12 +134,6 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
-
-   /* @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // FirebaseAuth.getInstance().signOut();
-    }*/
 
 
     private void Claim_Doge() {
@@ -165,18 +161,7 @@ public class HomeFragment extends Fragment {
 
                     editor.apply();
 
-                    if (!interstitialAd.show()) {
-                        startAppAd.showAd("ssE_ClaimInterstetial"); // show the ad
-                        startAppAd.loadAd(); // load the next ad
-                    } else {
-                        interstitialAd.loadAd();
-                    }
-
-                   /* prefseditor = prefs.edit();
-                    prefseditor.putInt("startappCount", 1);
-                    prefseditor.apply();*/
-                    // StartAppAd.disableAutoInterstitial();
-                    //  StartAppAd.showAd(getActivity());
+                    load_interstitial();
 
                 } catch (JSONException e) {
                     prefseditor = prefs.edit();
@@ -205,7 +190,7 @@ public class HomeFragment extends Fragment {
                 btnclaim.setEnabled(true);
                 spinner2.setVisibility(View.GONE);
                 Log.i(TAG, "Error " + error);
-                Toast.makeText(getActivity(), "Please try again... " , Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Please try again... ", Toast.LENGTH_SHORT).show();
 
             }
         }) {
@@ -214,6 +199,7 @@ public class HomeFragment extends Fragment {
                 Map<String, String> param = new HashMap<>();
                 param.put("email", mAuth.getCurrentUser().getEmail());
                 param.put("claimok", "ok");
+                param.put("devid", deviceId);
                 return param;
             }
         };
@@ -221,24 +207,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void load_interstitial() {
-        startappCount = prefs.getInt("startappCount", 0);
-
-        if (startappCount == 1) {
-
-            if (!interstitialAd.show()) {
-
-                startAppAd.showAd("ssE_ResumeInterstetial"); // show the ad
-                startAppAd.loadAd();
-
-            } else {
-                interstitialAd.loadAd();
-
-            }
-        }
-        prefseditor = prefs.edit();
-        prefseditor.putInt("startappCount", 0);
-        prefseditor.apply();
-
+            startAppAd.showAd("ssE_ResumeInterstetial"); // show the ad
+            startAppAd.loadAd();
     }
 
 
@@ -264,7 +234,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onResume() {
-        load_interstitial();
+     //   load_interstitial();
 
         // Request an ad
         adView.loadAd();
@@ -336,6 +306,7 @@ public class HomeFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> param = new HashMap<>();
                 param.put("email", mAuth.getCurrentUser().getEmail());
+                param.put("devid", deviceId);
                 return param;
             }
         };
@@ -348,14 +319,12 @@ public class HomeFragment extends Fragment {
             adView.destroy();
         }
 
-        if (interstitialAd != null) {
-            interstitialAd.destroy();
-        }
+
         super.onDestroy();
     }
+
     @Override
     public void onPause() {
         super.onPause();
-        interstitialAd.loadAd();
     }
 }

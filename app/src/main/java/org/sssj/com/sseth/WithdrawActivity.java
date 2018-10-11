@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -46,13 +47,17 @@ public class WithdrawActivity extends AppCompatActivity implements AdapterView.O
     // int WDFees;
 
 
-    String Curr_Bal_URL = "http://sscoinmedia.tech/EthereumWebService/ethereumClaimTimer.php";
+    String Curr_Bal_URL = "http://sscoinmedia.tech/EthereumWebService/ethereumClaimTimer1.php";
     String Withdraw_URL = "http://sscoinmedia.tech/EthereumWebService/ethereumAddrequest.php";
 
     private com.facebook.ads.AdView adView;
 
     RequestQueue requestQueue;
     FirebaseAuth mAuth;
+
+    String deviceId = "not find";
+    TelephonyManager telephonyManager;
+
 
     //  ProgressDialog progressDialog;
     private AlertDialog progressDialog;
@@ -66,6 +71,7 @@ public class WithdrawActivity extends AppCompatActivity implements AdapterView.O
     String emailPattern;
     private SharedPreferences prefs;
     private SharedPreferences.Editor prefseditor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,10 +81,15 @@ public class WithdrawActivity extends AppCompatActivity implements AdapterView.O
         prefseditor.putInt("startappCount", 1);
         prefseditor.apply();
 
+        telephonyManager = (TelephonyManager) getSystemService(Context.
+                TELEPHONY_SERVICE);
+        deviceId = telephonyManager.getDeviceId();
+
+
         txtCurrentBalance = (TextView) findViewById(R.id.txtwbalance2);
 
         edAmount = (EditText) findViewById(R.id.edwithAmt);
-        txtethaddamt = (TextView) findViewById(R.id.txtethaddamt);
+        // txtethaddamt = (TextView) findViewById(R.id.txtethaddamt);
 
         edEstiAmt = (EditText) findViewById(R.id.edwithEstimatedAmt);
         edEthAddr = (EditText) findViewById(R.id.edwithethAddress);
@@ -89,8 +100,8 @@ public class WithdrawActivity extends AppCompatActivity implements AdapterView.O
 
         edCoinEstiAmt = (EditText) findViewById(R.id.edwithEstimatedAmtcoin);
         edCoinAddr = (EditText) findViewById(R.id.edwithethAddresscoin);
-        txteth5 = (TextView) findViewById(R.id.txtethAdd5);
-        txteth7 = (TextView) findViewById(R.id.txtethAdd7);
+        //  txteth5 = (TextView) findViewById(R.id.txtethAdd5);
+        // txteth7 = (TextView) findViewById(R.id.txtethAdd7);
         txteth8 = (TextView) findViewById(R.id.txtethAdd8);
 
 
@@ -223,12 +234,12 @@ public class WithdrawActivity extends AppCompatActivity implements AdapterView.O
 
 
         // Creating adapter for spinner
-      //  ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        //  ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
-          ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
         // Drop down layout style - list view with radio button
-      //  dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //  dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dataAdapter.setDropDownViewResource(R.layout.spinner_center_item);
 
         // attaching data adapter to spinner
@@ -322,6 +333,7 @@ public class WithdrawActivity extends AppCompatActivity implements AdapterView.O
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> param = new HashMap<>();
                 param.put("email", mAuth.getCurrentUser().getEmail());
+                param.put("devid", deviceId);
                 return param;
             }
         };
@@ -354,7 +366,7 @@ public class WithdrawActivity extends AppCompatActivity implements AdapterView.O
 
                 } catch (JSONException e) {
                     progressDialog.dismiss();
-                    Toast.makeText(getApplicationContext(), "Please try again...  " , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Please try again...  ", Toast.LENGTH_SHORT).show();
                     Log.i("WithdrawActivity", " JSONException " + e);
 
                 }
@@ -408,12 +420,12 @@ public class WithdrawActivity extends AppCompatActivity implements AdapterView.O
             txteth3.setVisibility(View.VISIBLE);
             txteth4.setVisibility(View.VISIBLE);
             edAmount.setVisibility(View.VISIBLE);
-            txtethaddamt.setVisibility(View.VISIBLE);
+            //  txtethaddamt.setVisibility(View.VISIBLE);
 
             edCoinEstiAmt.setVisibility(View.GONE);
             edCoinAddr.setVisibility(View.GONE);
-            txteth5.setVisibility(View.GONE);
-            txteth7.setVisibility(View.GONE);
+            //  txteth5.setVisibility(View.GONE);
+            //  txteth7.setVisibility(View.GONE);
             txteth8.setVisibility(View.GONE);
         }
 
@@ -426,12 +438,12 @@ public class WithdrawActivity extends AppCompatActivity implements AdapterView.O
             txteth3.setVisibility(View.GONE);
             txteth4.setVisibility(View.GONE);
             edAmount.setVisibility(View.VISIBLE);
-            txtethaddamt.setVisibility(View.VISIBLE);
+            //  txtethaddamt.setVisibility(View.VISIBLE);
 
             edCoinEstiAmt.setVisibility(View.VISIBLE);
             edCoinAddr.setVisibility(View.VISIBLE);
-            txteth5.setVisibility(View.VISIBLE);
-            txteth7.setVisibility(View.VISIBLE);
+            //   txteth5.setVisibility(View.VISIBLE);
+            //  txteth7.setVisibility(View.VISIBLE);
             txteth8.setVisibility(View.VISIBLE);
         }
 

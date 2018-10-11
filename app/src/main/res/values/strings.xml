@@ -53,7 +53,7 @@ Note:- Subject to change any time.</string>
     <string name="symbolhypen">-</string>
     <string name="request_withdrawal">Request Withdrawal</string>
     <string name="info_about_fees">*** Withdrawal fees are dependent on choice of payment method \n For more deatils check Help menu.</string>
-    <string name="amt">Amount</string>
+    <string name="amt">Enter Amount</string>
     <string name="esti_receive">Estimated Receive</string>
     <string name="eth_add">Ethereum Address</string>
     <string name="req_msg">*please check ethereum address before requesting</string>

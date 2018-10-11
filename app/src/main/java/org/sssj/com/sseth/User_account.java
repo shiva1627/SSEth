@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.startapp.android.publish.adsCommon.StartAppAd;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,22 +35,32 @@ public class User_account extends AppCompatActivity {
     ImageView imgUser;
     TextView nameUser, mailUser, txtMainBal, txtCurrBal, txtEthAddr, txtCoinbaseAddr;
     String personPhotoUrl;
-    String MainBal = "http://sscoinmedia.tech/EthereumWebService/ethereumClaimTimer.php";
+    String MainBal = "http://sscoinmedia.tech/EthereumWebService/ethereumClaimTimer1.php";
     private AdView mAdView;
     RequestQueue requestQueue;
 
     private AlertDialog progressDialog;
     private SharedPreferences prefs;
     private SharedPreferences.Editor prefseditor;
+    String deviceId = "not find";
+    TelephonyManager telephonyManager;
+    private StartAppAd startAppAd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_account);
+        startAppAd = new StartAppAd(this);
+
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         progressDialog = new SpotsDialog(this, R.style.Custom);
         progressDialog.show();
+
+        telephonyManager = (TelephonyManager) getSystemService(Context.
+                TELEPHONY_SERVICE);
+        deviceId = telephonyManager.getDeviceId();
 
         requestQueue = MySingleton.getInstance(getApplicationContext()).getRequestQueue();
         prefs = getSharedPreferences("startappCount", Context.MODE_PRIVATE);
@@ -77,6 +89,13 @@ public class User_account extends AppCompatActivity {
                 .into(imgUser);
         Load_Bal();
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        startAppAd.showAd("ssE_UserInterstetial"); // show the ad
+        startAppAd.loadAd();
     }
 
     private void Load_Bal() {
@@ -114,6 +133,7 @@ public class User_account extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> param = new HashMap<>();
                 param.put("email", mAuth.getCurrentUser().getEmail());
+                param.put("devid", deviceId);
                 return param;
             }
         };

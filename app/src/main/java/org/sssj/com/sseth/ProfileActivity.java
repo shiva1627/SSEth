@@ -37,7 +37,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StartAppSDK.init(this, "207815866", false);
+        StartAppSDK.init(this, "207706847", false);
         StartAppSDK.setUserConsent (getApplicationContext(),
                 "pas",
                 System.currentTimeMillis(),
