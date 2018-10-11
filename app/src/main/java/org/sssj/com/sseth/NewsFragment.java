@@ -187,7 +187,7 @@ public class NewsFragment extends Fragment {
 
         ImageView nativeAdIcon = adView.findViewById(R.id.native_ad_icon);
 
-//        AdIconView nativeAdIcon = adView.findViewById(R.id.native_ad_icon);
+        // MediaView nativeAdIcon = adView.findViewById(R.id.native_ad_icon);
         TextView nativeAdTitle = adView.findViewById(R.id.native_ad_title);
         MediaView nativeAdMedia = adView.findViewById(R.id.native_ad_media);
         TextView nativeAdSocialContext = adView.findViewById(R.id.native_ad_social_context);
@@ -204,6 +204,14 @@ public class NewsFragment extends Fragment {
         nativeAdCallToAction.setVisibility(nativeAd.hasCallToAction() ? View.VISIBLE : View.INVISIBLE);
         nativeAdCallToAction.setText(nativeAd.getAdCallToAction());
         sponsoredLabel.setText(nativeAd.getAdSubtitle());
+
+
+        // Download and display the ad icon.
+        NativeAd.Image adIcon = nativeAd.getAdIcon();
+        NativeAd.downloadAndDisplayImage(adIcon, nativeAdIcon);
+
+        // Download and display the cover image.
+        nativeAdMedia.setNativeAd(nativeAd);
 /*
         sponsoredLabel.setText(nativeAd.getSponsoredTranslation());
 */
