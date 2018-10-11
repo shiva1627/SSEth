@@ -1,6 +1,5 @@
 package org.sssj.com.sseth;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -28,12 +26,8 @@ import com.facebook.ads.AdError;
 import com.facebook.ads.AdListener;
 import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAd;
-import com.startapp.android.publish.ads.nativead.NativeAdDetails;
-import com.startapp.android.publish.ads.nativead.NativeAdPreferences;
-import com.startapp.android.publish.ads.nativead.StartAppNativeAd;
 import com.startapp.android.publish.adsCommon.StartAppAd;
 import com.startapp.android.publish.adsCommon.StartAppSDK;
-import com.startapp.android.publish.adsCommon.adListeners.AdEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,8 +52,6 @@ public class NewsFragment extends Fragment {
      * StartAppAd object declaration
      */
     private StartAppAd startAppAd = new StartAppAd(getContext());
-
-
 
 
     @Nullable
@@ -90,13 +82,17 @@ public class NewsFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         // for 1st array url
+                        Log.i("MyTest", "Response" + response + "");
                         try {
 
                             JSONArray jsonArray = new JSONArray(response);
 
+                            Log.i("MyTest", "Array--> " + jsonArray);
+
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject o = jsonArray.getJSONObject(i);
-                                News Object_news = new News(o.getString("subject"), o.getString("details"));
+                                Log.i("MyTest1", "--> " + o + "");
+                                News Object_news = new News(o.getString("subject"), o.getString("date"), o.getString("details"));
                                 newsList.add(Object_news);
                             }
                             NewsRecyclerView.setAdapter(new NewsAdapter(newsList, getContext()));
@@ -126,7 +122,7 @@ public class NewsFragment extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-              //  Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -218,8 +214,8 @@ public class NewsFragment extends Fragment {
         clickableViews.add(nativeAdCallToAction);
 
         // Register the Title and CTA button to listen for clicks.
-     //  nativeAd.registerViewForInteraction(adView, nativeAdMedia, nativeAdIcon, clickableViews);
-        nativeAd.registerViewForInteraction(adView,clickableViews);
+        //  nativeAd.registerViewForInteraction(adView, nativeAdMedia, nativeAdIcon, clickableViews);
+        nativeAd.registerViewForInteraction(adView, clickableViews);
 
     }
 

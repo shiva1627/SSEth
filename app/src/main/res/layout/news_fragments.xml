@@ -6,7 +6,6 @@
     android:background="@drawable/background_gradient"
     android:orientation="vertical">
 
-
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
@@ -27,10 +26,10 @@
                 app:cardCornerRadius="4dp">
 
 
-            <LinearLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp">
+                    android:layout_margin="1dp">
 
                     <LinearLayout
                         android:id="@+id/native_ad_container"
